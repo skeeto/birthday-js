@@ -91,7 +91,7 @@ $(document).ready(function() {
             var year = $('form .year').val();
             var month = $('form .month').val();
             var day = $('form .day').val();
-            window.location = '/?' + year + '-' + month + '-' + day;
+            window.location = '?' + year + '-' + month + '-' + day;
             return false;
         });
     } else {
