@@ -47,8 +47,8 @@ function draw(birth) {
     var today = new Date();
 
     /* Compute start and end years. */
-    var first = Math.floor(conception.getFullYear() / 10) * 10;
-    var last = Math.ceil(today.getFullYear() / 10) * 10 - 1;
+    var first = Math.floor(conception.getFullYear() / 5) * 5 - 5;
+    var last = Math.ceil((today.getFullYear() + 1) / 5) * 5 + 4;
 
     /* Insert a canvas for each year. */
     var life = $('#life').empty();
