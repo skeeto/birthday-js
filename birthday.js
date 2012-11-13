@@ -50,6 +50,15 @@ function draw(birth) {
     var first = Math.floor(conception.getFullYear() / 5) * 5 - 5;
     var last = Math.ceil((today.getFullYear() + 1) / 5) * 5 + 4;
 
+    /* Compute age and display it. */
+    var age = today.getFullYear() - birth.getFullYear() - 1;
+    if (today.getMonth() > birth.getMonth() ||
+        (today.getMonth() === birth.getMonth() &&
+         today.getDate() >= birth.getDate())) {
+        age++;
+    }
+    $('#age').text('Number of Days Living at Age ' + age);
+
     /* Insert a canvas for each year. */
     var life = $('#life').empty();
     for (var year = first; year <= last; year++) {
