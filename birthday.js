@@ -70,5 +70,32 @@ function draw(birth) {
 
 $(document).ready(function() {
     var birth = location.search.match(/\?(\d+)-(\d+)-(\d+)/);
-    draw(new Date(birth[1], birth[2] - 1, birth[3]));
+    if (birth === null) {
+        var $year = $('form .year');
+        for (var year = 1900; year <= new Date().getFullYear(); year++) {
+            var $option = $('<option>' + year + '</option>', {value: year});
+            $year.append($option);
+        }
+        $year.val(1985);
+        var $month = $('form .month');
+        for (var month = 1; month <= 12; month++) {
+            $option = $('<option>' + month + '</option>', {value: month});
+            $month.append($option);
+        }
+        var $day = $('form .day');
+        for (var day = 1; day <= 31; day++) {
+            $option = $('<option>' + day + '</option>', {value: day});
+            $day.append($option);
+        }
+        $('form').submit(function() {
+            var year = $('form .year').val();
+            var month = $('form .month').val();
+            var day = $('form .day').val();
+            window.location = '/?' + year + '-' + month + '-' + day;
+            return false;
+        });
+    } else {
+        $('form').remove();
+        draw(new Date(birth[1], birth[2] - 1, birth[3]));
+    }
 });
