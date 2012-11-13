@@ -72,7 +72,8 @@ $(document).ready(function() {
     var birth = location.search.match(/\?(\d+)-(\d+)-(\d+)/);
     if (birth === null) {
         var $year = $('form .year');
-        for (var year = 1900; year <= new Date().getFullYear(); year++) {
+        var now = new Date().getFullYear();
+        for (var year = now - 115; year <= now; year++) {
             var $option = $('<option>' + year + '</option>', {value: year});
             $year.append($option);
         }
