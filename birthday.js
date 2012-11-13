@@ -11,25 +11,15 @@ function drawYear(canvas, year, conception, birth, today) {
     ctx.textBaseline = 'top';
     ctx.fillText(year, 0, 0);
 
-    function inWomb(date) {
-        return date.getTime() >= conception.getTime() &&
-            date.getTime() < birth.getTime();
-    }
-
-    function isAlive(date) {
-        return date.getTime() >= birth.getTime() &&
-            date.getTime() <= today.getTime();
-    }
-
     for (var month = 0; month < 12; month++) {
         for (var day = 1, date = new Date(year, month, day);
              date.getMonth() === month;
              date = new Date(year, month, ++day)) {
             var x = (day - 1) * size;
             var y = month * size + header + pad;
-            if (isAlive(date)) {
+            if (date >= birth && date <= today) {
                 ctx.fillRect(x, y, size / 2, size / 2);
-            } else if (inWomb(date)) {
+            } else if (date >= conception && date < birth) {
                 for (var i = 0; i < size / 2; i++) {
                     ctx.fillRect(x + i, y + i, 1, 1);
                 }
@@ -43,7 +33,7 @@ function drawYear(canvas, year, conception, birth, today) {
 function draw(birth) {
     /* Compute important dates: conception, birth, today. */
     var gestation = 276.5 * 24 * 60 * 60 * 1000;
-    var conception = new Date(birth.getTime() - gestation);
+    var conception = new Date(birth - gestation);
     var today = new Date();
 
     /* Compute start and end years. */
