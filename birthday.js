@@ -61,5 +61,5 @@ function draw(birth) {
 
 $(document).ready(function() {
     var birth = location.search.match(/\?(\d+)-(\d+)-(\d+)/);
-    draw(new Date(birth[1], birth[2], birth[3]));
+    draw(new Date(birth[1], birth[2] - 1, birth[3]));
 });
